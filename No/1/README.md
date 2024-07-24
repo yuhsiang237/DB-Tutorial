@@ -1,10 +1,11 @@
 前景提要:
 想查詢店家商家編號為"10050"的每個提領日提款「結算總金額」及「結算手續費」。
-
+```
 Shop - 店家資訊
 Transaction - 交易資料
 Settlement - 結算細項表
 SettlementMaster- 結算總表 (提款時產生)
+```
 
 DBScript.sql
 ```
