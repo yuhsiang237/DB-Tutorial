@@ -7,6 +7,9 @@ Settlement - 結算細項表
 SettlementMaster- 結算總表 (提款時產生)
 ```
 
+ER圖
+<img src="https://github.com/yuhsiang237/DB-Tutorial/blob/master/No/1/Assets/ERDB.png?raw=true" width="100%"/>
+
 DBScript.sql
 ```
 CREATE TABLE [dbo].[Settlement](
