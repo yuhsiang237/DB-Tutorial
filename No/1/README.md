@@ -143,3 +143,33 @@ SettlementMasterId	WithDrawDate	FeeAmount	TotalAMT
 
 完成
 ```
+
+補充:使用CTE 公用表表達式（CTE）
+提高查詢可讀性：CTE 使查詢結構更清晰，易於理解。
+重用計算結果：可以在同一查詢中多次引用 CTE 結果，而不需要重新計算。
+```
+sql
+複製程式碼
+WITH SettlementTotals AS (
+    SELECT 
+        S.SettlementMasterId,
+        SUM(S.SettlementAmount) AS TotalAMT
+    FROM 
+        Settlement S
+    JOIN 
+        [Transaction] T ON S.TransactionId = T.TransactionId 
+    WHERE 
+        T.ShopNo = '10050'
+    GROUP BY 
+        S.SettlementMasterId
+)
+SELECT 
+    M.SettlementMasterId,
+    CONVERT(char(10), M.SettlementMasterDate, 126) AS WithDrawDate,
+    M.FeeAmount,
+    ST.TotalAMT
+FROM 
+    SettlementMaster M
+JOIN 
+    SettlementTotals ST ON M.SettlementMasterId = ST.SettlementMasterId;
+```
